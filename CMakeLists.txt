@@ -35,3 +35,17 @@ target_link_libraries(ip_filter_boost_test
   ${Boost_LIBRARIES}
   process
 )
+
+install(TARGETS ip_filter_test_driven RUNTIME DESTINATION bin)
+
+message("${PROJECT_NAME} build ${PROJECT_VERSION}")
+
+set(CPACK_GENERATOR DEB)
+
+set(CPACK_PACKAGE_VERSION_MAJOR "${PROJECT_VERSION_MAJOR}")
+set(CPACK_PACKAGE_VERSION_MINOR "${PROJECT_VERSION_MINOR}")
+set(CPACK_PACKAGE_VERSION_PATCH "${PROJECT_VERSION_PATCH}")
+
+set(CPACK_PACKAGE_CONTACT alexandr_kudinov@mail.ru)
+
+include(CPack)
