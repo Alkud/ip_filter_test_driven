@@ -7,6 +7,16 @@ stringVector split(const std::string& inputString, const char& delimiter)
 {
   stringVector result;
   size_t first {0U};
+
+  /*std::stringstream ss(inputString);
+  std::string item;
+  while (std::getline(ss, item, delimiter))
+  {
+    result.push_back(item);
+  }
+  if (result.size() == 0)
+    result.push_back("0.0.0.0");*/
+
   size_t last{inputString.find_first_of(delimiter, 0)};
   while(last != std::string::npos)
   {
@@ -14,7 +24,10 @@ stringVector split(const std::string& inputString, const char& delimiter)
     first = last + 1;
     last = inputString.find_first_of(delimiter, first);
   }
-  if (result.size() == 0) // no legal delimiters found
+  if (result.size() == 0)
+    result.push_back("0.0.0.0");
+
+  /*if (result.size() == 0) // no legal delimiters found
   {
     last = inputString.find_first_not_of(".0123456789\n", 0); // find any delimiter
     if (std::string::npos == last) // delimiter is '.' or no delimiters
@@ -32,16 +45,18 @@ stringVector split(const std::string& inputString, const char& delimiter)
         last = pointPosition;
     }
   }
-  result.push_back(inputString.substr(first, last - first));
+  result.push_back(inputString.substr(first, last - first));*/
   return result;
 }
 
 ipTuple stringToTuple(const std::string& inputString)
 {
-  std::stringstream tmpStream{inputString};
-  char tmpChar;
+  //std::stringstream tmpStream{inputString};
+  //char tmpChar;
   int b0{}, b1{}, b2{}, b3{};
-  tmpStream >> b3 >> tmpChar >> b2 >> tmpChar >> b1 >> tmpChar >> b0;
+  char ch0{}, ch1{}, ch2{};
+  //tmpStream >> b3 >> tmpChar >> b2 >> tmpChar >> b1 >> tmpChar >> b0;
+  std::sscanf(inputString.data(), "%d%c%d%c%d%c%d", &b3, &ch0, &b2, &ch1, &b1, &ch2, &b0);
   if ( b0 < 0   || b1 < 0   || b2 < 0   || b3 < 0 ||   // any octet is negative
        b0 > 255 || b1 > 255 || b2 > 255 || b3 > 255)   // any octet is greater than 255
   {
