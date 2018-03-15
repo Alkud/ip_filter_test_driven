@@ -18,6 +18,8 @@ add_test(
   COMMAND ip_filter_boost_test
 )
 
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -Wall")
+
 set_target_properties(ip_filter_test_driven
   PROPERTIES CXX_STANDARD 14
   CXX_STANDARD_REQUIRED ON
