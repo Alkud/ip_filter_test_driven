@@ -24,10 +24,10 @@ stringVector split(const std::string& inputString, const char& delimiter)
     first = last + 1;
     last = inputString.find_first_of(delimiter, first);
   }
-  if (result.size() == 0)
-    result.push_back("0.0.0.0");
+  /*if (result.size() == 0)
+    result.push_back("0.0.0.0");*/
 
-  /*if (result.size() == 0) // no legal delimiters found
+  if (result.size() == 0) // no legal delimiters found
   {
     last = inputString.find_first_not_of(".0123456789\n", 0); // find any delimiter
     if (std::string::npos == last) // delimiter is '.' or no delimiters
@@ -45,7 +45,7 @@ stringVector split(const std::string& inputString, const char& delimiter)
         last = pointPosition;
     }
   }
-  result.push_back(inputString.substr(first, last - first));*/
+  result.push_back(inputString.substr(first, last - first));
   return result;
 }
 
