@@ -1,9 +1,8 @@
 #include <iostream>
-
-using namespace std;
+#include "process.h"
 
 int main()
 {
-  cout << "Hello World!" << endl;
+  process(std::cin, std::cout);
   return 0;
 }
